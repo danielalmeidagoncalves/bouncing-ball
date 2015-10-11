@@ -10,10 +10,16 @@
      this.y = $(window).height() - 10;
  };
 
- var Ball = function(initPoint) {
+ var Ball = function(initPoint,velocity,angle,bounciness) {
+    //defaults
      this.bounciness = 1;
-     this.teta = 45 * (Math.PI / 180);
+     this.angle = 45;     
      this.vi = 44;
+     this.setConfigurations(velocity,angle,bounciness);
+     console.log("bounciness: "+this.bounciness);
+     console.log("angle: "+this.angle);
+     console.log("vi: "+this.vi);
+     this.teta = this.angle * (Math.PI / 180);
      this.vix = this.vi * Math.cos(this.teta);
      this.viy = this.vi * Math.sin(this.teta);
      this.ax = 0;
@@ -31,16 +37,34 @@
      this.frontierGap = 5;
  };
 
+ Ball.prototype.setConfigurations = function(velocity,angle,bounciness){
+
+    if(velocity.random === "on"){
+        this.velocity = Math.random() * (50 - 1) + 1;
+    } else if(velocity.value !== undefined){
+        this.velocity = velocity.value;
+    }
+
+    if(angle.random === "on"){
+        this.angle = Math.random() * (89 - 45) + 45;
+    } else if(angle.value !== undefined){
+        this.angle = angle.value;
+    }
+
+    if(bounciness.random === "on"){
+        this.bounciness = Math.random() * (1 - 0.1) + 0.1;
+    } else if(bounciness.value !== undefined){
+        this.bounciness = bounciness.value;
+    }
+
+ };
+
  Ball.prototype.setTimer = function(bounciness) {
      var pTick = this.ticker;
      var tick = 0;
      var ball = this;
      this.ticker = setInterval(function() {
-         tick++;
-         if (tick === 100) {
-             clearInterval(pTick);
-         }
-         console.log(tick);
+         tick++;    
          ball.move(tick / 5, bounciness);
          ball.detectCollision();
      }, 25);
@@ -84,8 +108,35 @@
  };
 
  $(document).on("click", ".pusher", function(event) {
-     var ball = new Ball(new Point(event.pageX, event.pageY));
+     var velocity = {
+        value :$("#velocity input[type='text']").val(),
+        random:$("#velocity input[type='checkbox']").val()
+     };
+
+     var angle = {
+        value :$("#angle input[type='text']").val(),
+        random:$("#angle input[type='checkbox']").val()
+     };
+
+     var bounciness = {
+        value :$("#bounciness input[type='text']").val(),
+        random:$("#bounciness input[type='checkbox']").val()
+     };
+
+     var ball = new Ball(new Point(event.pageX, event.pageY),velocity,angle,bounciness);
      balls.push(ball);
+ });
+
+ $(document).on("click", "#mad .crazy", function(event) {
+    $('.ui.sidebar').sidebar('toggle');
+     var crazyTicker = setInterval(function() {        
+        var ball = new Ball(new Point(event.pageX, event.pageY),velocity,angle,bounciness);
+        balls.push(ball);
+     }, 500);
+ });
+
+  $(document).on("click", "#mad .close", function(event) {    
+    $('.ui.sidebar').sidebar('toggle');
  });
 
  $(document).keyup(function(event) {

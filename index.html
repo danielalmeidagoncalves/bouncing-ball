@@ -1,53 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>  
-    <meta charset="UTF-8">
-    <title>My Little Bouncing Ball</title>
-
-    <link rel="stylesheet" href="bower_components/semantic/dist/semantic.min.css"/>
-    <link rel="stylesheet" href="ball.css"/>
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/semantic/dist/semantic.min.js"></script>
-    <script src="ball.js"></script>
-</head>
-<body>
-    <div class="ui top right attached label"> 
-        Click ESC to change options
-    </div>
-    <div class="ui sidebar inverted vertical menu left">
-        <div class="item">
-          <div class="ui segment">
-            <div class="field">
-              <div class="ui toggle checkbox">
-                <input type="checkbox" name="gift" tabindex="0" class="hidden">
-                <label>Use random initial velocity</label>
-              </div>
-            </div>
-          </div>
+    <head>
+        <meta charset="UTF-8">
+        <title>My Little Bouncing Ball</title>
+        <link rel="stylesheet" href="bower_components/semantic/dist/semantic.min.css"/>
+        <link rel="stylesheet" href="ball.css"/>
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="bower_components/semantic/dist/semantic.min.js"></script>
+        <script src="ball.js"></script>
+    </head>
+    <body>
+        <div class="ui top right attached label">
+            Click ESC to change options
         </div>
-        <div class="item">
-          <div class="ui segment">
-            <div class="field">
-              <div class="ui toggle checkbox">
-                <input type="checkbox" name="gift" tabindex="0" class="hidden">
-                <label>Use random angle</label>
-              </div>
+        <div class="ui sidebar vertical menu left">
+            <div class="ui form item" id="velocity">
+                <div class="field">
+                    <label>Initial Velocity</label>
+                    <input type="number" placeholder="Choose a value between 1 and 50">
+                </div>
+                <div class="ui segment">
+                    <div class="field">
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" name="gift" tabindex="0" class="hidden">
+                            <label>Use random initial velocity</label>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="ui segment">
+            <div class="ui form  item" id="angle">
             <div class="field">
-              <div class="ui toggle checkbox">
-                <input type="checkbox" name="gift" tabindex="0" class="hidden">
-                <label>Use random bounciness</label>
-              </div>
+                    <label>Angle</label>
+                    <input type="number" id="angle" placeholder="Choose a value between 1 and 90">
+                </div>
+                <div class="ui segment">
+                    <div class="field">
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" name="gift" tabindex="0" class="hidden">
+                            <label>Use random angle</label>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="ui form item" id="bounciness">
+            <div class="field">
+                    <label>Bounciness</label>
+                    <input type="number" id="bounciness" placeholder="Choose a value between 0 and 1">
+                </div>
+                <div class="ui segment">
+                    <div class="field">
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" name="gift" tabindex="0" class="hidden">
+                            <label>Use random bounciness</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="ui form item" id="mad">
+                <div class="ui buttons">
+                  <button class="ui button close">Close</button>
+                  <div class="or"></div>
+                  <button class="ui positive button crazy">Go Crazy!!!</button>
+                </div>
+             </div>
         </div>
-      </div>
-      <div class="  pusher">
-        <!-- Site content !-->
-      </div>
-</body>
+        <div class="  pusher">
+            <!-- Site content !-->
+        </div>
+    </body>
 </html>

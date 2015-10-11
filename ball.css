@@ -9,3 +9,7 @@
 .ui.top.right{
     z-index: 10;
 }
+
+.pusher{
+    height:100%;
+}
