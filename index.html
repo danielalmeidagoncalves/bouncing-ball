@@ -91,8 +91,8 @@
 
         Ball.prototype.detectCollision = function(){
 
-            if(this.position.x > this.browser.x || this.position.x < this.frontierGap){                                
-                this.initialPosition.x = this.prevPosition.x;
+            if(this.position.x > this.browser.x || this.position.x < this.frontierGap){
+                this.initialPosition.x = this.initialPosition.x + 2 * (this.position.x - this.initialPosition.x) ;
                 this.invert *=  -1;
             }
 
