@@ -39,19 +39,19 @@
 
  Ball.prototype.setConfigurations = function(velocity,angle,bounciness){
 
-    if(velocity.random === "on"){
+    if(velocity.random){
         this.velocity = Math.random() * (50 - 1) + 1;
     } else if(velocity.value !== undefined){
         this.velocity = velocity.value;
     }
 
-    if(angle.random === "on"){
+    if(angle.random){
         this.angle = Math.random() * (89 - 45) + 45;
     } else if(angle.value !== undefined){
         this.angle = angle.value;
     }
 
-    if(bounciness.random === "on"){
+    if(bounciness.random){
         this.bounciness = Math.random() * (1 - 0.1) + 0.1;
     } else if(bounciness.value !== undefined){
         this.bounciness = bounciness.value;
@@ -110,17 +110,17 @@
  $(document).on("click", ".pusher", function(event) {
      var velocity = {
         value :$("#velocity input[type='text']").val(),
-        random:$("#velocity input[type='checkbox']").val()
+        random:$("#velocity input[type='checkbox']").is(":checked")
      };
 
      var angle = {
         value :$("#angle input[type='text']").val(),
-        random:$("#angle input[type='checkbox']").val()
+        random:$("#angle input[type='checkbox']").is(":checked")
      };
 
      var bounciness = {
         value :$("#bounciness input[type='text']").val(),
-        random:$("#bounciness input[type='checkbox']").val()
+        random:$("#bounciness input[type='checkbox']").is("checked")
      };
 
      var ball = new Ball(new Point(event.pageX, event.pageY),velocity,angle,bounciness);
